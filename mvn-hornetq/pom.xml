@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>mvn-parent</groupId>
+    <artifactId>mvn-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>mvn-hornetq</artifactId>
+  <packaging>pom</packaging>
+
+  <repositories>
+    <repository>
+      <id>jboss</id>
+      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <hq.version>2.4.1.Final</hq.version>
+  </properties>
+
+  <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.hornetq/hornetq-jms-client -->
+    <dependency>
+      <groupId>org.hornetq</groupId>
+      <artifactId>hornetq-jms-client</artifactId>
+      <version>${hq.version}</version>
+    </dependency>
+
+    <dependency>
+      <version>5.0.3.GA</version>
+      <groupId>org.jboss.naming</groupId>
+      <artifactId>jnpserver</artifactId>
+    </dependency>
+
+
+  </dependencies>
+
+  <modules>
+    <module>mvn-hornetq-examples</module>
+  </modules>
+</project>
