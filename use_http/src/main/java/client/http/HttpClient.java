@@ -11,27 +11,17 @@ public class HttpClient {
 
   public static void main(String[] args) throws Exception {
 
-//    Socket clientSocket = new Socket("google.com", 80);
-    Socket clientSocket = new Socket("localhost", 80);
+    Socket clientSocket = new Socket(ClientConstants.HTTP_SERVER_HOST, ClientConstants.HTTP_PORT);
 
     DataOutputStream outStream = new DataOutputStream(clientSocket.getOutputStream());
     BufferedReader inReader =
         new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-    String[] requestHeader= new String[] {
-        "Host: localhost",
-        "Accept: text/html,*/*",
-        "Accept-Language: en-us",
-        "Accept-Encoding: gzip, deflate",
-        "User-Agent: Mozilla/5.0 (Windows NT 10.0;) Gecko/20100101 Firefox/63.0"
-    };
-    
-//    String request = "GET /a.html HTTP/1.1";
-    String request = "GET /favicon.ico HTTP/1.1";
+    String request = ClientConstants.HTTP_GET_REQ_1;
     
     outStream.writeBytes(request);
     outStream.writeBytes(LINE_END);
-    for (String item:requestHeader) {
+    for (String item: ClientConstants.HTTP_REQ_HEADER) {
       outStream.writeBytes(item);
       outStream.writeBytes(LINE_END);
     }

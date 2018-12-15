@@ -41,7 +41,6 @@ public final class EchoServer {
     public static void main(String[] args) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
-        final EchoServerHandler serverHandler = new EchoServerHandler();
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
@@ -57,7 +56,7 @@ public final class EchoServer {
                          new StringEncoder(CharsetUtil.UTF_8),
                          new LineBasedFrameDecoder(8192),
                          new StringDecoder(CharsetUtil.UTF_8),
-                         serverHandler);
+                         new EchoServerHandler());
                  }
              });
 

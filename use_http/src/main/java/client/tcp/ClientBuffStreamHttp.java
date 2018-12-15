@@ -6,13 +6,12 @@ import java.io.InputStream;
 import java.net.Socket;
 
 import client.http.ClientConstants;
-import netty.echo.EchoServer;
 import util.PressKey;
 
-public class ClientBuffStream {
+public class ClientBuffStreamHttp {
 
   public static void main(String[] args) throws Exception {
-    ClientBuffStream o = new ClientBuffStream();
+    ClientBuffStreamHttp o = new ClientBuffStreamHttp();
     o.start();
   }
 
@@ -22,7 +21,7 @@ public class ClientBuffStream {
 
   private void start() throws Exception {
     registerShutdownHook();
-    setMaxRunningTime(5000_000);
+    setMaxRunningTime(5_000);
     PressKey.listenKey();
 
     clientSocket = new Socket(ClientConstants.HTTP_SERVER_HOST, ClientConstants.HTTP_PORT);
@@ -30,14 +29,17 @@ public class ClientBuffStream {
     outStream = new DataOutputStream(clientSocket.getOutputStream());
     inputStream = new BufferedInputStream(clientSocket.getInputStream(), 65536);
 
-    for (int i = 0; i < 8; i++) {
+    outStream.write(ClientConstants.HTTP_GET_REQ_1.getBytes());
+    outStream.write("\n".getBytes());
 
-      String request = "HELLO my name is bob num="+i;
-      outStream.writeBytes(request);
-      outStream.writeBytes("\n");
-      outStream.flush();
+    for (String item : ClientConstants.HTTP_REQ_HEADER) {
+      outStream.write(item.getBytes());
+      outStream.write("\n".getBytes());
     }
-
+    outStream.write("\n".getBytes());
+    outStream.flush();
+    
+    
     while (true) {
 
       int av;
