@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JettyStart {
-  static private Logger log = LoggerFactory.getLogger("test.jettyStart");
+  static private final Logger logger = LoggerFactory.getLogger("test.jettyStart");
 
   public void startJetty() {
     new Thread(new WorkerRun(), "jetty-worker-start").start();
@@ -23,8 +23,8 @@ public class JettyStart {
     @Override
     public void run() {
       try {
-        log.info("starting");
-        Server server = new Server(8080);
+        logger.info("starting");
+        Server server = new Server(8299);
 
         // setupDirectoryListing(server);
         // setupRawServlet(server);
@@ -32,12 +32,12 @@ public class JettyStart {
         
         server.start();
         
-        log.info("started");
+        logger.info("started");
         String dump = server.dump();
-        log.info("started, dump=\n{}\n", dump);
+        logger.info("started, dump=\n{}\n", dump);
         // server.join();
       } catch (Exception e) {
-        log.error("err:", e);
+        logger.error("err:", e);
       }
     }
 
