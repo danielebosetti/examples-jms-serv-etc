@@ -16,9 +16,6 @@ import javax.naming.InitialContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import util.Util;
-
-
 public class QueueProducer {
   static Logger LOG = LoggerFactory.getLogger(QueueProducer.class);
 

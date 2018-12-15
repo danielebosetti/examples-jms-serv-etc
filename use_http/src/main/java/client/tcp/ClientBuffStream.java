@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.net.Socket;
 
 import client.http.ClientConstants;
-import netty.echo.EchoServer;
 import util.PressKey;
 
 public class ClientBuffStream {

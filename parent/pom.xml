@@ -10,7 +10,6 @@
 
   <modules>
     <module>../webapps/war-1</module>
-    <module>../webapps/war-2</module>
     <module>../web-1</module>
     <module>../run-web-1</module>
 	

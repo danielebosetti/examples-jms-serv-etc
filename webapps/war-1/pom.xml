@@ -10,9 +10,9 @@
 
   <properties>
     <metrics.version>4.0.2</metrics.version>
-    <jetty.version>9.4.3.v20170317</jetty.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
   </properties>
 
   <dependencies>
@@ -31,9 +31,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-<!--         <configuration> -->
-<!--           <webXml>src\main\resources\WEB-INF\web.xml</webXml> -->
-<!--         </configuration> -->
+        <version>3.2.0</version>
+        <configuration>
+          <webXml>${project.basedir}/src/main/resources/WEB-INF/web.xml</webXml>
+        </configuration>
       </plugin>
     </plugins>
   </build>
